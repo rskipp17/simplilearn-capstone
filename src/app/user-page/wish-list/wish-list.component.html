@@ -1,0 +1,32 @@
+<h4>Items in Cart:</h4>
+
+<table *ngIf="(wishList !== undefined) && (wishList.length > 0); else elseBlock" class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Price</th>
+            <th scope="col">Email</th>
+            <th scope="col">Availible</th>
+            <th scope="col">Actions:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of wishList">
+            <td>{{ product.name }}</td>
+            <td>{{ product.brand }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.email }}</td>
+            <td>{{ product.availible }}</td>
+            <td> <button class="btn btn-danger" (click)="removeList(product)">Remove</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #elseBlock>
+    <div class="alert alert-info" role="info">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Information:</span>
+    There are no products in your cart currently.
+    </div>
+</ng-template>
